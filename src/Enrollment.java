@@ -12,7 +12,7 @@ public class Enrollment {
 
         this.student = student;
         this.course = course;
-        course.addEnrollment(this); // auto-register
+        course.addEnrollment(this);
     }
 
     public Student getStudent() { return student; }

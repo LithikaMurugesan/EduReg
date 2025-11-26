@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CourseRegistrationSystem {
 
@@ -17,6 +16,17 @@ public class CourseRegistrationSystem {
 
     public boolean enrollStudent(Student student, Course course) {
 
+
+        for (Enrollment e : student.getEnrollments()) {
+            if (e.getCourse().getSchedule().conflictsWith(course.getSchedule())) {
+                System.out.println("Schedule conflict! "
+                        + student.getName() + " cannot enroll in "
+                        + course.getCourseName());
+                return false;
+            }
+        }
+
+
         if (course.hasSeat()) {
             Enrollment enrollment = new Enrollment(student, course);
             student.addEnrollment(enrollment);
@@ -30,7 +40,6 @@ public class CourseRegistrationSystem {
     }
 
     public void dropCourse(Student student, Course course) {
-
         student.dropCourse(course);
         course.removeEnrollment(student);
 
@@ -38,18 +47,9 @@ public class CourseRegistrationSystem {
 
         if (course.hasWaitlist()) {
             Student nextStudent = course.popWaitlistedStudent();
-            System.out.println("Seat freed! Auto-enrolling " + nextStudent.getName()
-                    + " from waitlist.");
 
+            System.out.println("Seat freed! Auto-enrolling " + nextStudent.getName());
             enrollStudent(nextStudent, course);
-        }
-    }
-
-    public void assignGrade(Student student, Course course, String grade) {
-        for (Enrollment e : student.getEnrollments()) {
-            if (e.getCourse().equals(course)) {
-                e.assignGrade(grade);
-            }
         }
     }
 }
