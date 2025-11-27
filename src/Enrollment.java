@@ -4,7 +4,9 @@ public class Enrollment {
     private Course course;
     private String grade;
 
+
     public Enrollment(Student student, Course course) {
+
 
         if (!course.hasSeat()) {
             throw new RuntimeException("Cannot enroll. Course is full.");
@@ -12,7 +14,8 @@ public class Enrollment {
 
         this.student = student;
         this.course = course;
-        course.addEnrollment(this);
+
+        course.addEnrollment(this); // Add to course list
     }
 
     public Student getStudent() { return student; }
