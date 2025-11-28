@@ -46,6 +46,13 @@ public class Course {
         waitlist.offer(student);
         System.out.println(student.getName() + " added to waitlist for " + courseName);
     }
+    public void showEnrolledStudents() {
+        System.out.println("Students enrolled in " + courseName + ":");
+        for (Enrollment e : enrollments) {
+            System.out.println("- " + e.getStudent().getName());
+        }
+    }
+
 
     public Student popWaitlistedStudent() { return waitlist.poll(); }
 

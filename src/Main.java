@@ -48,6 +48,8 @@ public class Main {
         System.out.println("\n------- DROP COURSE (AUTO ENROLL FROM WAITLIST) --------");
 
         system.dropCourse(s1, c1);
+        c1.showEnrolledStudents();
 
+        c2.showEnrolledStudents();
     }
 }
